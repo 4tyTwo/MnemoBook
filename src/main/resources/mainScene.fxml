@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import org.fxmisc.richtext.CodeArea?>
 
+<?import javafx.scene.layout.Pane?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="MnemoBookApplication.MainSceneController"
@@ -13,7 +14,12 @@
     <padding>
         <Insets top="20" bottom="20" left="10" right="10"/>
     </padding>
-    <Label text="This is a simple demo application."/>
+    <MenuBar useSystemMenuBar="true">
+        <Menu text="File">
+            <MenuItem text="New"/>
+            <MenuItem text="Open" onAction="#fileOpenButtonClicked"/>
+            <MenuItem text="Save as"/>
+        </Menu>
+    </MenuBar>
     <CodeArea fx:id="codeEditor"/>
-    <Button fx:id="mainButton" text="Click me!" onAction="#buttonClicked"/>
 </VBox>

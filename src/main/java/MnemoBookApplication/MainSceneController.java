@@ -14,20 +14,16 @@ import java.nio.file.Files;
 public class MainSceneController {
 
     @FXML
-    private Button mainButton;
-    @FXML
     private CodeArea codeEditor;
 
     private Stage stage;
-
-    private int timesClicked = 0;
 
     public void setStage(Stage stage) {
         if (this.stage == null)
             this.stage = stage;
     }
 
-    public void buttonClicked() {
+    public void fileOpenButtonClicked() {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open Resource File");
         File file = chooser.showOpenDialog(stage);
