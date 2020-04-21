@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import org.fxmisc.richtext.CodeArea?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="MnemoBookApplication.MainSceneController"
+      spacing="30"
+>
+    <padding>
+        <Insets top="20" bottom="20" left="10" right="10"/>
+    </padding>
+    <Label text="This is a simple demo application."/>
+    <CodeArea fx:id="codeEditor"/>
+    <Button fx:id="mainButton" text="Click me!" onAction="#buttonClicked"/>
+</VBox>
