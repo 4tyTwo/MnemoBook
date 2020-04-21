@@ -1,29 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import Elements.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import org.fxmisc.richtext.*?>
 
-<?import javafx.geometry.Insets?>
-<BorderPane fx:id="mainBox" prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MnemoBookApplication.MainSceneController">
+<BorderPane fx:id="mainBox" prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainSceneController">
     <top>
         <MenuBar useSystemMenuBar="true">
             <Menu text="File">
                 <MenuItem text="New" />
                 <MenuItem onAction="#fileOpenButtonClicked" text="Open" />
-                <MenuItem onAction="#saveFileButtonClicked" text="Save as" />
+                <MenuItem onAction="#saveFileButtonClicked" text="Save"/>
+                <MenuItem onAction="#saveFileAsButtonClicked" text="Save as" />
             </Menu>
         </MenuBar>
     </top>
-    <left>
-        <VBox>
-            <padding>
-                <Insets left="2" right="5" top="5" bottom="2"/>
-            </padding>
-            <Label text="Sample"/>
-        </VBox>
-    </left>
     <center>
-        <CodeArea fx:id="codeEditor"/>
+        <EditorPane/>
     </center>
 </BorderPane>

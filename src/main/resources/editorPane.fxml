@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import org.fxmisc.richtext.CodeArea?>
+<fx:root type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+    <left>
+        <VBox>
+            <padding>
+                <Insets left="2" right="5" top="5" bottom="2"/>
+            </padding>
+            <Label text="Sample text"/>
+        </VBox>
+    </left>
+    <center>
+        <CodeArea fx:id="codeEditor"/>
+    </center>
+</fx:root>

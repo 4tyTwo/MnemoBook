@@ -1,9 +1,11 @@
+import Elements.EditorPane;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-import MnemoBookApplication.MainSceneController;
+import Controllers.MainSceneController;
 
 
 import java.io.IOException;
@@ -18,8 +20,11 @@ public class MnemoBookApplication extends Application {
         loader.setLocation(xmlUrl);
         try {
              Parent root = loader.load();
-             MainSceneController controller = (MainSceneController)loader.getController();
-             controller.setStage(stage);
+             MainSceneController controller = loader.getController();
+             EditorPane editorPane = new EditorPane();
+             BorderPane bp = (BorderPane) root.lookup("#mainBox");
+             bp.setCenter(editorPane);
+             controller.setStage(stage).setCodeEditor(editorPane.getCodeEditor());
              stage.setScene(new Scene(root));
         }
         catch (IOException e) {

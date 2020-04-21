@@ -1,9 +1,6 @@
-package MnemoBookApplication;
+package Controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
@@ -13,14 +10,20 @@ import java.nio.file.Files;
 
 public class MainSceneController {
 
-    @FXML
     private CodeArea codeEditor;
+
+    private File currentFile;
+
+    public MainSceneController setCodeEditor(CodeArea codeEditor) {
+        this.codeEditor = codeEditor;
+        return this;
+    }
 
     private Stage stage;
 
-    public void setStage(Stage stage) {
-        if (this.stage == null)
-            this.stage = stage;
+    public MainSceneController setStage(Stage stage) {
+        this.stage = stage;
+        return this;
     }
 
     public void fileOpenButtonClicked() {
@@ -30,6 +33,7 @@ public class MainSceneController {
         try {
             String contents = new String(Files.readAllBytes(file.toPath()));
             codeEditor.replaceText(contents);
+            currentFile = file;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,6 +41,14 @@ public class MainSceneController {
     }
 
     public void saveFileButtonClicked() {
+        if (currentFile == null) {
+            saveFileAsButtonClicked();
+        } else {
+            saveTextToFile(codeEditor.getText(), currentFile);
+        }
+    }
+
+    public void saveFileAsButtonClicked() {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open Resource File");
         File file = chooser.showSaveDialog(stage);
@@ -48,6 +60,7 @@ public class MainSceneController {
 
 
     private void saveTextToFile(String content, File file) {
+        currentFile = file;
         try {
             PrintWriter writer;
             writer = new PrintWriter(file);
