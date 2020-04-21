@@ -35,4 +35,26 @@ public class MainSceneController {
         }
 
     }
+
+    public void saveFileButtonClicked() {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Open Resource File");
+        File file = chooser.showSaveDialog(stage);
+        if (file != null) {
+            String text = codeEditor.getText();
+            saveTextToFile(text, file);
+        }
+    }
+
+
+    private void saveTextToFile(String content, File file) {
+        try {
+            PrintWriter writer;
+            writer = new PrintWriter(file);
+            writer.println(content);
+            writer.close();
+        } catch (IOException ignored) {
+
+        }
+    }
 }
