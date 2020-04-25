@@ -1,5 +1,6 @@
 package Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -69,5 +70,9 @@ public class MainSceneController {
         } catch (IOException ignored) {
 
         }
+    }
+
+    public void mnemonicsButtonClicked(ActionEvent actionEvent) {
+
     }
 }

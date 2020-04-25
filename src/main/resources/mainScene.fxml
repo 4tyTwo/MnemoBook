@@ -13,6 +13,9 @@
                 <MenuItem onAction="#saveFileButtonClicked" text="Save"/>
                 <MenuItem onAction="#saveFileAsButtonClicked" text="Save as" />
             </Menu>
+            <Menu text="Info">
+                <MenuItem onAction="#mnemonicsButtonClicked" text="Mnemonics"/>
+            </Menu>
         </MenuBar>
     </top>
     <center>
