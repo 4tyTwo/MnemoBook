@@ -1,10 +1,8 @@
-package Elements;
+package elements;
 
-import Controllers.EditorPaneController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import org.fxmisc.richtext.CodeArea;
 
 import java.io.IOException;
@@ -29,6 +27,7 @@ public class EditorPane extends BorderPane {
         try {
             loader.load();
         } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

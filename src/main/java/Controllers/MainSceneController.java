@@ -1,9 +1,16 @@
 package Controllers;
 
+import elements.EditorPane;
+import elements.HelpWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.fxmisc.richtext.CodeArea;
 
 import java.io.*;
@@ -72,7 +79,13 @@ public class MainSceneController {
         }
     }
 
-    public void mnemonicsButtonClicked(ActionEvent actionEvent) {
-
+    public void mnemonicsButtonClicked() {
+        Group root = new Group();
+        HelpWindow window = new HelpWindow();
+        root.getChildren().add(window);
+        Stage stage = new Stage();
+        stage.setTitle("Help");
+        stage.setScene(new Scene(root, 450, 450));
+        stage.show();
     }
 }
