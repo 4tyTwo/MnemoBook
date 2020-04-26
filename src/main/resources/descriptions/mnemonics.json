@@ -1,0 +1,22 @@
+{
+  "mnemonics": [
+    {
+      "name": "mov",
+      "description": "moves data from source to destination",
+      "arguments": [
+        "mem mem",
+        "reg mem",
+        "mem reg",
+        "reg reg"
+      ]
+    },
+    {
+      "name": "add",
+      "description": "adds destination to source and stores result in source",
+      "arguments": [
+        "reg mem",
+        "reg reg"
+      ]
+    }
+  ]
+}

@@ -3,58 +3,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.Font?>
-<VBox xmlns="http://javafx.com/javafx"
+<?import elements.MnemonicDescription?>
+
+<fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="Controllers.HelpWindowController"
-      prefHeight="400.0" prefWidth="600.0">
+      prefHeight="400.0" prefWidth="600.0"
+        fx:controller="Controllers.HelpWindowController">
     <ToolBar>
         <!-- Search bar. TODO: make it a separate entity, add icons -->
-        <items>
-            <Button fx:id="buttonCloseSearch"/>
-            <TextField fx:id="fieldSearch"/>
-            <Button fx:id="buttonSearchUp"/>
-            <Button fx:id="buttonSearchDown"/>
-            <Label fx:id="labelMatches"/>
-        </items>
+        <Button fx:id="buttonCloseSearch"/>
+        <TextField fx:id="fieldSearch"/>
+        <Button fx:id="buttonSearchUp"/>
+        <Button fx:id="buttonSearchDown"/>
+        <Label fx:id="labelMatches"/>
     </ToolBar>
     <ListView fx:id="mnemonicsList">
-        <VBox>
-<!--            Represent an mnemonic description. TODO: add descriptions dynamically-->
-            <Label>
-                <font>
-                    <Font size="30.0" />
-                </font>
-                mov
-            </Label>
-            <Text>
-                Mov is being used to copy value from source to destination
-            </Text>
-            <VBox>
-                <Label>Argument lists</Label>
-                <ListView prefHeight="100">
-                    <Text>mov reg mem</Text>
-                    <Text>mov mem mem</Text>
-                    <Text>mov reg reg</Text>
-                    <Text>mov mem reg</Text>
-                </ListView>
-            </VBox>
-        </VBox>
-        <VBox>
-            <Label>comp</Label>
-            <TextArea>
-                Mov is being used to copy value from source to destination
-            </TextArea>
-            <VBox>
-                <Label>Argument lists</Label>
-                <ListView prefHeight="100">
-                    <Text>comp reg mem</Text>
-                    <Text>comp mem mem</Text>
-                    <Text>comp reg reg</Text>
-                    <Text>comp mem reg</Text>
-                </ListView>
-            </VBox>
-        </VBox>
+        <MnemonicDescription/>
     </ListView>
-</VBox>
+</fx:root>
