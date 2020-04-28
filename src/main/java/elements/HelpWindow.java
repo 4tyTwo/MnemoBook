@@ -2,7 +2,6 @@ package elements;
 
 import Controllers.HelpWindowController;
 import Entities.InstructionList;
-import Utils.JSONConverter;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
@@ -29,12 +28,7 @@ public class HelpWindow extends VBox {
 
     private void setDescriptions(FXMLLoader loader) {
         HelpWindowController cont = loader.getController();
-        InstructionList instructionList = JSONConverter.convert(
-                "/Users/I.toporkov/Documents/adapters/MnemoBook/src/main/resources/descriptions/mnemonics.json",
-                InstructionList.class
-        );
-        List<MnemonicDescription> descriptions =
-                instructionList.getInstructionList().stream().
+        List<MnemonicDescription> descriptions = InstructionList.INSTRUCTION_LIST.stream().
                 map(MnemonicDescription::new).collect(Collectors.toList());
         cont.instructionList.getItems().remove(0);
         cont.instructionList.getItems().addAll(descriptions);
