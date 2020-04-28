@@ -1,5 +1,6 @@
 package Controllers;
 
+import elements.MnemonicDescription;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -12,5 +13,5 @@ public class HelpWindowController {
     public Button buttonSearchUp;
     public Button buttonSearchDown;
     public Label labelMatches;
-    public ListView mnemonicsList;
+    public ListView<MnemonicDescription> instructionList;
 }

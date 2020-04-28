@@ -17,7 +17,7 @@
         <Button fx:id="buttonSearchDown"/>
         <Label fx:id="labelMatches"/>
     </ToolBar>
-    <ListView fx:id="mnemonicsList">
+    <ListView fx:id="instructionList">
         <MnemonicDescription/>
     </ListView>
 </fx:root>

@@ -1,5 +1,3 @@
-import Entities.MnemonicsList;
-import Utils.JSONConverter;
 import elements.EditorPane;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -30,6 +28,7 @@ public class MnemoBookApplication extends Application {
              stage.setScene(new Scene(root));
         }
         catch (IOException e) {
+            throw new RuntimeException(e);
         }
         stage.show();
     }

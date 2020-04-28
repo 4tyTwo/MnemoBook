@@ -16,13 +16,39 @@
         </font>
         <!-- Mnemonic name here -->
     </Label>
+    <Label fx:id="fullName"/>
+    <Label text="Description">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
     <Text fx:id="description">
         <!-- Description here -->
     </Text>
+    <Label text="Operation">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
+    <Text fx:id="operation">
+        <!-- Operation here -->
+    </Text>
     <VBox>
-        <Label>Argument lists</Label>
+        <Label text="Arguments">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
         <ListView prefHeight="100" fx:id="arguments">
             <!-- Arguments here -->
         </ListView>
     </VBox>
+    <Label text="Example">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
+    <Text fx:id="example">
+        <!-- Example here -->
+    </Text>
 </fx:root>

@@ -1,13 +1,9 @@
 package elements;
 
 import Controllers.MnemonicDescriptionController;
-import Entities.Mnemonic;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
+import Entities.Argument;
+import Entities.Instruction;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -28,7 +24,7 @@ public class MnemonicDescription extends VBox {
         }
     }
 
-    public MnemonicDescription(Mnemonic m) {
+    public MnemonicDescription(Instruction m) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mnemonicDescription.fxml"));
         loader.setRoot(this);
         loader.setClassLoader(getClass().getClassLoader());
@@ -40,8 +36,11 @@ public class MnemonicDescription extends VBox {
         MnemonicDescriptionController cont = loader.getController();
         cont.name.setText(m.getName());
         cont.description.setText(m.getDescription());
-        List<String> mnems = m.getArguments();
-        List<Text> textMnems = mnems.stream().map(Text::new).collect(Collectors.toList());
+        cont.example.setText(m.getExample());
+        cont.operation.setText(m.getOperation());
+        cont.fullName.setText(m.getFullName());
+        List<Argument> mnems = m.getArguments();
+        List<Text> textMnems = mnems.stream().map(Argument::toString).map(Text::new).collect(Collectors.toList());
         cont.arguments.getItems().addAll(textMnems);
         cont.arguments.setMaxHeight(25 * textMnems.size());
     }
