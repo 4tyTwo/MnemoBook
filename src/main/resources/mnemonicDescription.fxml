@@ -5,41 +5,66 @@
 
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
 <fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
          fx:controller="Controllers.MnemonicDescriptionController"
+         prefWidth="300"
+         style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;"
 >
     <!-- Represent an mnemonic description. TODO: add descriptions dynamically -->
     <Label fx:id="name">
         <font>
             <Font size="30.0" />
         </font>
+        <VBox.margin>
+            <Insets bottom="5.0" left="7.0" top="7" />
+        </VBox.margin>
         <!-- Mnemonic name here -->
     </Label>
-    <Label fx:id="fullName"/>
+    <Label fx:id="fullName">
+        <VBox.margin>
+            <Insets bottom="5.0" left="7.0" top="7" />
+        </VBox.margin>
+    </Label>
     <Label text="Description">
         <font>
             <Font size="20.0" />
         </font>
+        <VBox.margin>
+            <Insets bottom="5.0" left="7.0" top="7" />
+        </VBox.margin>
     </Label>
     <Text fx:id="description">
         <!-- Description here -->
+        <VBox.margin>
+            <Insets bottom="5.0" left="7.0" top="7" />
+        </VBox.margin>
     </Text>
     <Label text="Operation">
         <font>
             <Font size="20.0" />
         </font>
+        <VBox.margin>
+            <Insets bottom="5.0" left="7.0" top="7" />
+        </VBox.margin>
     </Label>
     <Text fx:id="operation">
         <!-- Operation here -->
+        <VBox.margin>
+            <Insets bottom="5.0" left="7.0" top="7" />
+        </VBox.margin>
     </Text>
     <VBox>
         <Label text="Arguments">
             <font>
                 <Font size="20.0" />
             </font>
+            <VBox.margin>
+                <Insets bottom="5.0" left="7.0" top="7" />
+            </VBox.margin>
         </Label>
-        <ListView prefHeight="100" fx:id="arguments">
+        <ListView prefHeight="100"  prefWidth="250" fx:id="arguments">
             <!-- Arguments here -->
         </ListView>
     </VBox>
@@ -47,8 +72,14 @@
         <font>
             <Font size="20.0" />
         </font>
+        <VBox.margin>
+            <Insets bottom="5.0" left="7.0" top="7" />
+        </VBox.margin>
     </Label>
     <Text fx:id="example">
         <!-- Example here -->
+        <VBox.margin>
+            <Insets bottom="5.0" left="7.0" top="7" />
+        </VBox.margin>
     </Text>
 </fx:root>
