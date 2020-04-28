@@ -104,6 +104,201 @@
         }
       ],
       "example": "and $d, $s, $t"
+    },
+    {
+      "name": "ANDI",
+      "full_name": "Bitwise and immediate",
+      "description": "Bitwise ands a register and an immediate value and stores the result in a register",
+      "operation": "$t = $s & imm; advance_pc (4);",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "immediate",
+          "type": "immediate"
+        }
+      ],
+      "example": "andi $t, $s, imm"
+    },
+    {
+      "name": "BEQ",
+      "full_name": "Branch on equal",
+      "description": "Branches if the two registers are equal",
+      "operation": "if $s == $t advance_pc (offset << 2)); else advance_pc (4);;",
+      "arguments": [
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "target",
+          "type": "register"
+        },
+        {
+          "name": "offset",
+          "type": "offset"
+        }
+      ],
+      "example": "beq $s, $t, offset"
+    },
+    {
+      "name": "BGEZ",
+      "full_name": "Branch on greater than or equal to zero and link",
+      "description": "Branches if the register is greater than or equal to zero and saves the return address in $31",
+      "operation": "if $s >= 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);",
+      "arguments": [
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "offset",
+          "type": "offset"
+        }
+      ],
+      "example": "bgezal $s, offset"
+    },
+    {
+      "name": "BGTZ",
+      "full_name": "Branch on greater than zero",
+      "description": "Branches if the register is greater than zero",
+      "operation": "if $s > 0 advance_pc (offset << 2)); else advance_pc (4);",
+      "arguments": [
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "offset",
+          "type": "offset"
+        }
+      ],
+      "example": "bgtz $s, offset"
+    },
+    {
+      "name": "BLEZ",
+      "full_name": "Branch on less than or equal to zero",
+      "description": "Branches if the register is less than or equal to zero",
+      "operation": "if $s <= 0 advance_pc (offset << 2)); else advance_pc (4);",
+      "arguments": [
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "offset",
+          "type": "offset"
+        }
+      ],
+      "example": "blez $s, offset"
+    },
+    {
+      "name": "BLTZ",
+      "full_name": "Branch on less than zero",
+      "description": "Branches if the register is less than zero",
+      "operation": "if $s < 0 advance_pc (offset << 2)); else advance_pc (4);",
+      "arguments": [
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "offset",
+          "type": "offset"
+        }
+      ],
+      "example": "bltz $s, offset"
+    },
+    {
+      "name": "BLTZAL",
+      "full_name": "Branch on less than zero and link",
+      "description": "Branches if the register is less than zero and saves the return address in $31",
+      "operation": "if $s < 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);",
+      "arguments": [
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "offset",
+          "type": "offset"
+        }
+      ],
+      "example": "bltzal $s, offset"
+    },
+    {
+      "name": "BNE",
+      "full_name": "Branch on not equal",
+      "description": "Branches if the two registers are not equal",
+      "operation": "if $s != $t advance_pc (offset << 2)); else advance_pc (4);",
+      "arguments": [
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "target",
+          "type": "register"
+        },
+        {
+          "name": "offset",
+          "type": "offset"
+        }
+      ],
+      "example": "bne $s, $t, offset"
+    },
+    {
+      "name": "DIV",
+      "full_name": "Divide",
+      "description": "Divides $s by $t and stores the quotient in $LO and the remainder in $HI",
+      "operation": "$LO = $s / $t; $HI = $s % $t; advance_pc (4);",
+      "arguments": [
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "target",
+          "type": "register"
+        }
+      ],
+      "example": "div $s, $t"
+    },
+    {
+      "name": "DIVU",
+      "full_name": "Divide unsigned",
+      "description": "Divides $s by $t and stores the quotient in $LO and the remainder in $HI",
+      "operation": "$LO = $s / $t; $HI = $s % $t; advance_pc (4);",
+      "arguments": [
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "target",
+          "type": "register"
+        }
+      ],
+      "example": "divu $s, $t"
+    },
+    {
+      "name": "J",
+      "full_name": "Jump",
+      "description": "Jumps to the calculated address",
+      "operation": "PC = nPC; nPC = (PC & 0xf0000000) | (target << 2);",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "target"
+        }
+      ],
+      "example": "j target"
     }
   ]
 }
