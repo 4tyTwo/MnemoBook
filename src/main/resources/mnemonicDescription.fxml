@@ -65,6 +65,9 @@
             </VBox.margin>
         </Label>
         <ListView prefHeight="100"  prefWidth="250" fx:id="arguments">
+            <VBox.margin>
+                <Insets bottom="5.0" left="7.0" top="7" />
+            </VBox.margin>
             <!-- Arguments here -->
         </ListView>
     </VBox>
