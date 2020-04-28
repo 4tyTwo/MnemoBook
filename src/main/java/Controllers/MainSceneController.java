@@ -85,7 +85,8 @@ public class MainSceneController {
         root.getChildren().add(window);
         Stage stage = new Stage();
         stage.setTitle("Help");
-        stage.setScene(new Scene(root, 450, 450));
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
     }
 }

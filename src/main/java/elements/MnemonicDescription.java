@@ -42,6 +42,6 @@ public class MnemonicDescription extends VBox {
         List<Argument> mnems = m.getArguments();
         List<Text> textMnems = mnems.stream().map(Argument::toString).map(Text::new).collect(Collectors.toList());
         cont.arguments.getItems().addAll(textMnems);
-        cont.arguments.setMaxHeight(25 * textMnems.size());
+        cont.arguments.setMaxHeight(26 * textMnems.size());
     }
 }
