@@ -1,22 +1,109 @@
 {
-  "mnemonics": [
+  "instructions": [
     {
-      "name": "mov",
-      "description": "moves data from source to destination",
+      "name": "ADD",
+      "full_name": "Add (with overflow)",
+      "description": "Adds two registers and stores the result in a register",
+      "operation": "$d = $s + $t; advance_pc (4)",
       "arguments": [
-        "mem mem",
-        "reg mem",
-        "mem reg",
-        "reg reg"
-      ]
+        {
+          "name": "destination",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "target",
+          "type": "register"
+        }
+      ],
+      "example": "add $d, $s, $t"
     },
     {
-      "name": "add",
-      "description": "adds destination to source and stores result in source",
+      "name": "ADDI",
+      "full_name": "Add immediate (with overflow)",
+      "description": "Adds a register and a sign-extended immediate value and stores the result in a register",
+      "operation": "$t = $s + imm; advance_pc (4);",
       "arguments": [
-        "reg mem",
-        "reg reg"
-      ]
+        {
+          "name": "target",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "immediate",
+          "type": "immediate"
+        }
+      ],
+      "example": "addi $t, $s, imm"
+    },
+    {
+      "name": "ADDIU",
+      "full_name": "Add immediate unsigned (no overflow)",
+      "description": "Adds a register and a sign-extended immediate value and stores the result in a register",
+      "operation": "$t = $s + imm; advance_pc (4);",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "immediate",
+          "type": "immediate"
+        }
+      ],
+      "example": "addi $t, $s, imm"
+    },
+    {
+      "name": "ADDU",
+      "full_name": "Add unsigned (no overflow)",
+      "description": "Adds two registers and stores the result in a register",
+      "operation": "$d = $s + $t; advance_pc (4);",
+      "arguments": [
+        {
+          "name": "destination",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "target",
+          "type": "register"
+        }
+      ],
+      "example": "addu $d, $s, $t"
+    },
+    {
+      "name": "AND",
+      "full_name": "Bitwise and",
+      "description": "Bitwise ands two registers and stores the result in a register",
+      "operation": "$d = $s & $t; advance_pc (4);",
+      "arguments": [
+        {
+          "name": "destination",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "register"
+        },
+        {
+          "name": "target",
+          "type": "register"
+        }
+      ],
+      "example": "and $d, $s, $t"
     }
   ]
 }
