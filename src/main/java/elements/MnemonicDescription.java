@@ -24,24 +24,16 @@ public class MnemonicDescription extends VBox {
         }
     }
 
-    public MnemonicDescription(Instruction m) {
+    public MnemonicDescription(Instruction instruction) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mnemonicDescription.fxml"));
         loader.setRoot(this);
         loader.setClassLoader(getClass().getClassLoader());
         try {
             loader.load();
+            MnemonicDescriptionController controller = loader.getController();
+            controller.setUpChildren(instruction);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        MnemonicDescriptionController cont = loader.getController();
-        cont.name.setText(m.getName());
-        cont.description.setText(m.getDescription());
-        cont.example.setText(m.getExample());
-        cont.operation.setText(m.getOperation());
-        cont.fullName.setText(m.getFullName());
-        List<Argument> mnems = m.getArguments();
-        List<Text> textMnems = mnems.stream().map(Argument::toString).map(Text::new).collect(Collectors.toList());
-        cont.arguments.getItems().addAll(textMnems);
-        cont.arguments.setMaxHeight(26 * textMnems.size());
     }
 }

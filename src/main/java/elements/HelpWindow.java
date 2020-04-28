@@ -20,17 +20,10 @@ public class HelpWindow extends VBox {
         loader.setClassLoader(getClass().getClassLoader());
         try {
             loader.load();
-            setDescriptions(loader);
+            HelpWindowController controller = loader.getController();
+            controller.setupElements();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private void setDescriptions(FXMLLoader loader) {
-        HelpWindowController cont = loader.getController();
-        List<MnemonicDescription> descriptions = InstructionList.INSTRUCTION_LIST.stream().
-                map(MnemonicDescription::new).collect(Collectors.toList());
-        cont.instructionList.getItems().remove(0);
-        cont.instructionList.getItems().addAll(descriptions);
     }
 }
