@@ -6,7 +6,7 @@ import lombok.Getter;
 
 import java.util.List;
 
-public class Instruction {
+public class Instruction implements Comparable<Instruction> {
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public Instruction(
             @JsonProperty("name") String name,
@@ -41,4 +41,9 @@ public class Instruction {
 
     @Getter
     private final List<Argument> arguments;
+
+    @Override
+    public int compareTo(Instruction other) {
+        return this.getName().compareTo(other.getName());
+    }
 }
