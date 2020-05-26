@@ -3,17 +3,12 @@ package Controllers;
 import elements.EditorPane;
 import elements.HelpWindow;
 import elements.MnemonicDescription;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import org.fxmisc.richtext.CodeArea;
 
 import java.io.*;
@@ -21,12 +16,19 @@ import java.nio.file.Files;
 
 public class MainSceneController {
 
+    public EditorPane editorPane;
     private CodeArea codeEditor;
+    private Label currentFileName;
 
     private File currentFile;
 
     public MainSceneController setCodeEditor(CodeArea codeEditor) {
         this.codeEditor = codeEditor;
+        return this;
+    }
+
+    public MainSceneController setCurrentFileName(Label currentFileName) {
+        this.currentFileName = currentFileName;
         return this;
     }
 
@@ -45,6 +47,7 @@ public class MainSceneController {
             String contents = new String(Files.readAllBytes(file.toPath()));
             codeEditor.replaceText(contents);
             currentFile = file;
+            currentFileName.setText(file.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,7 +93,7 @@ public class MainSceneController {
         window.prefHeightProperty().bind(stage.heightProperty());
         window.prefWidthProperty().bind(stage.widthProperty());
         ListView<MnemonicDescription> lw = (ListView<MnemonicDescription>) window.lookup("#instructionList");
-        lw.prefHeightProperty().bind(stage.heightProperty());
+        lw.prefHeightProperty().bind(window.heightProperty().subtract(70));
         stage.setMinWidth(600.0);
         stage.setMinHeight(400.0);
         root.getChildren().add(window);

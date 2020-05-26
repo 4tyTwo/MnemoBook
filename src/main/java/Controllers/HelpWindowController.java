@@ -26,6 +26,8 @@ public class HelpWindowController {
     public Label labelMatches;
     public ListView<MnemonicDescription> instructionList;
 
+    private SearchNavigator navigator;
+
     private static final List<MnemonicDescription> descriptions =
             convertInstructionList(InstructionList.INSTRUCTION_LIST);
 
@@ -39,6 +41,15 @@ public class HelpWindowController {
         buttonSearchDown .setGraphic(createFontAwesomeIcon(FontAwesomeIcon.ARROW_DOWN));
 
         fieldSearch.textProperty().addListener(this::search);
+        navigator = new SearchNavigator(instructionList);
+    }
+
+    public void searchUpClicked() {
+        navigator.previous();
+    }
+
+    public void searchDownClicked() {
+        navigator.next();
     }
 
     private void search(Observable observable, String oldValue, String newValue) {
@@ -81,5 +92,34 @@ public class HelpWindowController {
                 .stream()
                 .map(MnemonicDescription::new)
                 .collect(Collectors.toList());
+    }
+
+    private class SearchNavigator {
+        int currentElement = 0;
+        final ListView<?> list;
+
+        SearchNavigator(ListView<?> list) {
+            this.list = list;
+        }
+
+        void next() {
+            if (inLimits(currentElement + 1)) {
+                list.scrollTo(++currentElement);
+                list.getFocusModel().focus(currentElement);
+                list.getSelectionModel().select(currentElement);
+            }
+        }
+
+        void previous() {
+            if (inLimits(currentElement - 1)) {
+                list.scrollTo(--currentElement);
+                list.getFocusModel().focus(currentElement);
+                list.getSelectionModel().select(currentElement);
+            }
+        }
+
+        private boolean inLimits(int index) {
+            return  list.getItems().size() > index && index >= 0;
+        }
     }
 }

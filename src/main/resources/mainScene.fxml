@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="mainBox" prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainSceneController">
+<BorderPane prefHeight="400" prefWidth="500" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainSceneController">
     <top>
         <MenuBar useSystemMenuBar="true">
             <Menu text="File">
@@ -19,6 +19,6 @@
         </MenuBar>
     </top>
     <center>
-        <EditorPane/>
+        <EditorPane fx:id="editorPane"/>
     </center>
 </BorderPane>

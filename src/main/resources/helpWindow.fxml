@@ -17,8 +17,8 @@
                 <Label fx:id="search"/>
             </left>
         </CustomTextField>
-        <Button fx:id="buttonSearchUp"/>
-        <Button fx:id="buttonSearchDown"/>
+        <Button fx:id="buttonSearchUp" onAction="#searchUpClicked"/>
+        <Button fx:id="buttonSearchDown" onAction="#searchDownClicked"/>
         <Label fx:id="labelMatches"/>
     </ToolBar>
     <ListView fx:id="instructionList">
