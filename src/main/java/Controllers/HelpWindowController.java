@@ -35,8 +35,8 @@ public class HelpWindowController {
 
         buttonCloseSearch.setGraphic(createFontAwesomeIcon(FontAwesomeIcon.CLOSE));
         search           .setGraphic(createFontAwesomeIcon(FontAwesomeIcon.SEARCH));
-        buttonSearchUp   .setGraphic(createFontAwesomeIcon(FontAwesomeIcon.SEARCH_PLUS));
-        buttonSearchDown .setGraphic(createFontAwesomeIcon(FontAwesomeIcon.SEARCH_MINUS));
+        buttonSearchUp   .setGraphic(createFontAwesomeIcon(FontAwesomeIcon.ARROW_UP));
+        buttonSearchDown .setGraphic(createFontAwesomeIcon(FontAwesomeIcon.ARROW_DOWN));
 
         fieldSearch.textProperty().addListener(this::search);
     }
