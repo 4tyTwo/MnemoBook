@@ -2,12 +2,15 @@ package Controllers;
 
 import elements.EditorPane;
 import elements.HelpWindow;
+import elements.MnemonicDescription;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -81,12 +84,17 @@ public class MainSceneController {
 
     public void mnemonicsButtonClicked() {
         Group root = new Group();
-        HelpWindow window = new HelpWindow();
-        root.getChildren().add(window);
         Stage stage = new Stage();
         stage.setTitle("Help");
+        HelpWindow window = new HelpWindow();
+        window.prefHeightProperty().bind(stage.heightProperty());
+        window.prefWidthProperty().bind(stage.widthProperty());
+        ListView<MnemonicDescription> lw = (ListView<MnemonicDescription>) window.lookup("#instructionList");
+        lw.prefHeightProperty().bind(stage.heightProperty());
+        stage.setMinWidth(600.0);
+        stage.setMinHeight(400.0);
+        root.getChildren().add(window);
         stage.setScene(new Scene(root));
-        stage.setResizable(false);
         stage.show();
     }
 }
