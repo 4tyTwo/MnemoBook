@@ -41,17 +41,22 @@ public class MainSceneController {
 
     public void fileOpenButtonClicked() {
         FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Assembler code", "*.asm", "*.s"),
+                new FileChooser.ExtensionFilter("All files", "*.*")
+        );
         chooser.setTitle("Open Resource File");
         File file = chooser.showOpenDialog(stage);
-        try {
-            String contents = new String(Files.readAllBytes(file.toPath()));
-            codeEditor.replaceText(contents);
-            currentFile = file;
-            currentFileName.setText(file.getName());
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (file != null) {
+            try {
+                String contents = new String(Files.readAllBytes(file.toPath()));
+                codeEditor.replaceText(contents);
+                currentFile = file;
+                currentFileName.setText(file.getName());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
     public void saveFileButtonClicked() {
