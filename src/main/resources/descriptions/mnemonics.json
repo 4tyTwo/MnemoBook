@@ -393,6 +393,31 @@
         }
       ],
       "example": "lw $t, offset($s)"
+    },
+    {
+      "name": "LA",
+      "full_name": "Load address",
+      "description": "An address is loaded into a register",
+      "operation": "$t = offset; advance_pc (4);",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "address"
+        }
+      ],
+      "example": "la $t, s"
+    },
+    {
+      "name": "SYSCALL",
+      "full_name": "Generates a software interrupt",
+      "description": "Call operating system to perform action from $a0 with operand $v0",
+      "operation": "advance_pc (4)",
+      "arguments": [],
+      "example": "syscall"
     }
   ]
 }

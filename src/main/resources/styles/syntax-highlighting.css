@@ -2,3 +2,12 @@
     -fx-fill: purple;
     -fx-font-weight: bold;
 }
+
+.string {
+    -fx-fill: green;
+}
+
+.comment {
+    -fx-fill: grey;
+    -fx-font-style: italic
+}
