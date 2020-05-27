@@ -148,7 +148,7 @@
       "example": "beq $s, $t, offset"
     },
     {
-      "name": "BGEZ",
+      "name": "BGE",
       "full_name": "Branch on greater than or equal to zero and link",
       "description": "Branches if the register is greater than or equal to zero and saves the return address in $31",
       "operation": "if $s >= 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);",
@@ -165,7 +165,7 @@
       "example": "bgezal $s, offset"
     },
     {
-      "name": "BGTZ",
+      "name": "BGT",
       "full_name": "Branch on greater than zero",
       "description": "Branches if the register is greater than zero",
       "operation": "if $s > 0 advance_pc (offset << 2)); else advance_pc (4);",
@@ -182,7 +182,7 @@
       "example": "bgtz $s, offset"
     },
     {
-      "name": "BLEZ",
+      "name": "BLE",
       "full_name": "Branch on less than or equal to zero",
       "description": "Branches if the register is less than or equal to zero",
       "operation": "if $s <= 0 advance_pc (offset << 2)); else advance_pc (4);",
@@ -199,7 +199,7 @@
       "example": "blez $s, offset"
     },
     {
-      "name": "BLTZ",
+      "name": "BLT",
       "full_name": "Branch on less than zero",
       "description": "Branches if the register is less than zero",
       "operation": "if $s < 0 advance_pc (offset << 2)); else advance_pc (4);",
@@ -299,6 +299,100 @@
         }
       ],
       "example": "j target"
+    },
+    {
+      "name": "JAL",
+      "full_name": "Jump and link",
+      "description": "Jumps to the calculated address and stores the return address in $31",
+      "operation": "$31 = PC + 8 (or nPC + 4); PC = nPC; nPC = (PC & 0xf0000000) | (target << 2);",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "target"
+        }
+      ],
+      "example": "jal target"
+    },
+    {
+      "name": "JR",
+      "full_name": "Jump register",
+      "description": "Jump to the address contained in register $s",
+      "operation": "PC = nPC; nPC = $s;",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "register"
+        }
+      ],
+      "example": "jal $s"
+    },
+    {
+      "name": "LB",
+      "full_name": "Load byte",
+      "description": "A byte is loaded into a register from the specified address.",
+      "operation": "$t = MEM[$s + offset]; advance_pc (4);",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "offset"
+        }
+      ],
+      "example": "lb $t, offset($s)"
+    },
+    {
+      "name": "LI",
+      "full_name": "Load immediate",
+      "description": "The immediate value stored in the register",
+      "operation": "$t = imm; advance_pc (4);",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "immediate"
+        }
+      ],
+      "example": "lui $t, imm"
+    },
+    {
+      "name": "LUI",
+      "full_name": "Load upper immediate",
+      "description": "The immediate value is shifted left 16 bits and stored in the register. The lower 16 bits are zeroes",
+      "operation": "$t = (imm << 16); advance_pc (4);",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "immediate"
+        }
+      ],
+      "example": "lui $t, imm"
+    },
+    {
+      "name": "LW",
+      "full_name": "Load word",
+      "description": "A word is loaded into a register from the specified address.",
+      "operation": "$t = MEM[$s + offset]; advance_pc (4);",
+      "arguments": [
+        {
+          "name": "target",
+          "type": "register"
+        },
+        {
+          "name": "source",
+          "type": "offset"
+        }
+      ],
+      "example": "lw $t, offset($s)"
     }
   ]
 }
