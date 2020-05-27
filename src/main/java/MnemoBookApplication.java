@@ -27,7 +27,10 @@ public class MnemoBookApplication extends Application {
                      .setStage(stage)
                      .setCodeEditor(editorPane.getCodeEditor())
                      .setCurrentFileName(editorPane.getCurrentFileName());
-             stage.setScene(new Scene(root));
+             Scene scene = new Scene(root);
+             String resource = this.getClass().getResource("styles/syntax-highlighting.css").toExternalForm();
+             scene.getStylesheets().add(resource);
+             stage.setScene(scene);
         }
         catch (IOException e) {
             throw new RuntimeException(e);
