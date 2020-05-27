@@ -24,9 +24,13 @@ public class SyntaxHighlighter {
             .collect(Collectors.toList());
 
     private static final String INSTRUCTIONS_PATTERN = "\\b(" + String.join("|", INSTRUCTIONS) + ")\\b";
+    private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
+    private static final String COMMENT_PATTERN = "#(.*)";
 
     private static final Pattern PATTERN = Pattern.compile(
             "(?<INSTRUCTION>" + INSTRUCTIONS_PATTERN + ")"
+                    + "|(?<STRING>" + STRING_PATTERN + ")"
+                    + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
     );
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();;
@@ -60,7 +64,10 @@ public class SyntaxHighlighter {
                 = new StyleSpansBuilder<>();
         while(matcher.find()) {
             String styleClass =
-                    matcher.group("INSTRUCTION") != null ? "instruction" : null;
+                    matcher.group("INSTRUCTION") != null ? "instruction" :
+                            matcher.group("STRING") != null ? "string" :
+                                matcher.group("COMMENT") != null ? "comment" :
+                                        null;
             assert styleClass != null;
             spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
             spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
