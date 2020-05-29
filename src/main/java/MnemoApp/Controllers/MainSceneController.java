@@ -1,8 +1,8 @@
-package Controllers;
+package MnemoApp.Controllers;
 
-import elements.EditorPane;
-import elements.HelpWindow;
-import elements.MnemonicDescription;
+import MnemoApp.elements.EditorPane;
+import MnemoApp.elements.HelpWindow;
+import MnemoApp.elements.MnemonicDescription;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;

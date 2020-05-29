@@ -1,7 +1,7 @@
-package Controllers;
+package MnemoApp.Controllers;
 
-import Utils.SyntaxHighlighter;
-import elements.EditorPane;
+import MnemoApp.Utils.SyntaxHighlighter;
+import MnemoApp.elements.EditorPane;
 import javafx.scene.control.Label;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;

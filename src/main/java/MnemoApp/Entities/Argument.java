@@ -1,8 +1,7 @@
-package Entities;
+package MnemoApp.Entities;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 
 public class Argument {
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
@@ -11,10 +10,8 @@ public class Argument {
         this.type = type;
     }
 
-    @Getter
     private final String name;
 
-    @Getter
     private final String type;
 
     @Override

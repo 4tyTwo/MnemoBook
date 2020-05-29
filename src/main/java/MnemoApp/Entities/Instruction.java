@@ -1,8 +1,7 @@
-package Entities;
+package MnemoApp.Entities;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 
 import java.util.List;
 
@@ -24,22 +23,40 @@ public class Instruction implements Comparable<Instruction> {
         this.arguments = arguments;
     }
 
-    @Getter
     private final String name;
 
-    @Getter
     private final String fullName;
 
-    @Getter
+    public String getName() {
+        return name;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public String getExample() {
+        return example;
+    }
+
+    public List<Argument> getArguments() {
+        return arguments;
+    }
+
     private final String description;
 
-    @Getter
     private final String operation;
 
-    @Getter
     private final String example;
 
-    @Getter
     private final List<Argument> arguments;
 
     @Override

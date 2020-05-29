@@ -1,19 +1,21 @@
-package Controllers;
+package MnemoApp.Controllers;
 
-import Entities.Instruction;
-import Entities.InstructionList;
-import de.jensd.fx.glyphs.GlyphsBuilder;
+import MnemoApp.Entities.Instruction;
+import MnemoApp.Entities.InstructionList;
+import MnemoApp.elements.MnemonicDescription;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import elements.MnemonicDescription;
 import javafx.beans.Observable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import de.jensd.fx.glyphs.GlyphsBuilder;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class HelpWindowController {

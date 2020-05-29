@@ -3,13 +3,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import elements.MnemonicDescription?>
+<?import MnemoApp.elements.MnemonicDescription?>
 
 <?import org.controlsfx.control.textfield.CustomTextField?>
 <fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       minHeight="400.0" minWidth="600.0"
-        fx:controller="Controllers.HelpWindowController">
+        fx:controller="MnemoApp.Controllers.HelpWindowController">
     <ToolBar>
         <Button fx:id="buttonCloseSearch"/>
         <CustomTextField fx:id="fieldSearch">

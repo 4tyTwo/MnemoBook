@@ -1,7 +1,6 @@
-package elements;
+package MnemoApp.elements;
 
-import Controllers.HelpWindowController;
-import Entities.InstructionList;
+import MnemoApp.Controllers.HelpWindowController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 

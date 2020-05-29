@@ -1,7 +1,7 @@
-package Utils;
+package MnemoApp.Utils;
 
-import Entities.Instruction;
-import Entities.InstructionList;
+import MnemoApp.Entities.Instruction;
+import MnemoApp.Entities.InstructionList;
 import javafx.concurrent.Task;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.model.StyleSpans;

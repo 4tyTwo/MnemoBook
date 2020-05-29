@@ -8,7 +8,7 @@
 <?import javafx.geometry.Insets?>
 <fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
-         fx:controller="Controllers.MnemonicDescriptionController"
+         fx:controller="MnemoApp.Controllers.MnemonicDescriptionController"
          prefWidth="300"
          style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;"
 >

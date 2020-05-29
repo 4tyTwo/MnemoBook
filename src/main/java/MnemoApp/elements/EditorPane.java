@@ -1,6 +1,6 @@
-package elements;
+package MnemoApp.elements;
 
-import Controllers.EditorPaneController;
+import MnemoApp.Controllers.EditorPaneController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;

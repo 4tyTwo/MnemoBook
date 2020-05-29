@@ -1,7 +1,7 @@
-package Controllers;
+package MnemoApp.Controllers;
 
-import Entities.Argument;
-import Entities.Instruction;
+import MnemoApp.Entities.Argument;
+import MnemoApp.Entities.Instruction;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;

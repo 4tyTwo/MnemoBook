@@ -1,12 +1,12 @@
-import elements.EditorPane;
+package MnemoApp;
+
+import MnemoApp.elements.EditorPane;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-import Controllers.MainSceneController;
-import org.fxmisc.richtext.CodeArea;
+import MnemoApp.Controllers.MainSceneController;
 
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class MnemoBookApplication extends Application {
                      .setCodeEditor(editorPane.getCodeEditor())
                      .setCurrentFileName(editorPane.getCurrentFileName());
              Scene scene = new Scene(root);
-             String resource = this.getClass().getResource("styles/syntax-highlighting.css").toExternalForm();
+             String resource = this.getClass().getResource("/styles/syntax-highlighting.css").toExternalForm();
              scene.getStylesheets().add(resource);
              stage.setScene(scene);
         }

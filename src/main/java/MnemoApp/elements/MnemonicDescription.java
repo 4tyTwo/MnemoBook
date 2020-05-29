@@ -1,15 +1,11 @@
-package elements;
+package MnemoApp.elements;
 
-import Controllers.MnemonicDescriptionController;
-import Entities.Argument;
-import Entities.Instruction;
+import MnemoApp.Controllers.MnemonicDescriptionController;
+import MnemoApp.Entities.Instruction;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class MnemonicDescription extends VBox {
 
