@@ -5,8 +5,7 @@ module MnemoApp {
     requires org.fxmisc.richtext;
     requires reactfx;
     requires com.fasterxml.jackson.databind;
-    requires fontawesomefx.fontawesome;
-    requires de.jensd.fx.fontawesomefx.commons;
+    requires fontawesomefx;
 
     opens MnemoApp to java.base;
     exports MnemoApp;

@@ -3,15 +3,14 @@ package MnemoApp.Controllers;
 import MnemoApp.Entities.Instruction;
 import MnemoApp.Entities.InstructionList;
 import MnemoApp.elements.MnemonicDescription;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.Observable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import de.jensd.fx.glyphs.GlyphsBuilder;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.GlyphsDude;
 
 import java.util.Collection;
 import java.util.List;
@@ -36,7 +35,6 @@ public class HelpWindowController {
     public void setupElements() {
         instructionList.getItems().clear();
         instructionList.getItems().addAll(descriptions);
-
         buttonCloseSearch.setGraphic(createFontAwesomeIcon(FontAwesomeIcon.CLOSE));
         search           .setGraphic(createFontAwesomeIcon(FontAwesomeIcon.SEARCH));
         buttonSearchUp   .setGraphic(createFontAwesomeIcon(FontAwesomeIcon.ARROW_UP));
@@ -83,10 +81,7 @@ public class HelpWindowController {
     }
 
     private Node createFontAwesomeIcon(FontAwesomeIcon icon) {
-        return GlyphsBuilder
-                .create(FontAwesomeIconView.class)
-                .glyph(icon)
-                .build();
+        return GlyphsDude.createIcon(icon);
     }
 
     private static List<MnemonicDescription> convertInstructionList(Collection<Instruction> instructions) {
