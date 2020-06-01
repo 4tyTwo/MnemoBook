@@ -8,13 +8,21 @@
     <top>
         <MenuBar useSystemMenuBar="true">
             <Menu text="File">
-                <MenuItem text="New" />
+                <MenuItem text="New"/> <!-- TODO: implement -->
                 <MenuItem onAction="#fileOpenButtonClicked" text="Open" />
                 <MenuItem onAction="#saveFileButtonClicked" text="Save"/>
                 <MenuItem onAction="#saveFileAsButtonClicked" text="Save as" />
+                <MenuItem text="Exit"/><!-- TODO: implement -->
             </Menu>
             <Menu text="Info">
                 <MenuItem onAction="#mnemonicsButtonClicked" text="Mnemonics"/>
+            </Menu>
+            <Menu text="Settings">
+                <fx:define>
+                    <ToggleGroup fx:id="group1"/>
+                </fx:define>
+                <RadioMenuItem text="MIPS" toggleGroup="$group1" onAction="#mipsAssemblyChosen"/>
+                <RadioMenuItem text="fasm" toggleGroup="$group1" onAction="#fasmAssemblyChosen"/>
             </Menu>
         </MenuBar>
     </top>

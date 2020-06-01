@@ -30,7 +30,7 @@ public class HelpWindowController {
     private SearchNavigator navigator;
 
     private static final List<MnemonicDescription> descriptions =
-            convertInstructionList(InstructionList.INSTRUCTION_LIST);
+            convertInstructionList(InstructionList.getInstructions());
 
     public void setupElements() {
         instructionList.getItems().clear();
@@ -62,13 +62,13 @@ public class HelpWindowController {
 
     private Collection<Instruction> executeSearch(String query) {
         if (query == null || query.equals("")) {
-            return InstructionList.INSTRUCTION_LIST;
+            return InstructionList.getInstructions();
         }
         return searchInstructions(query.toLowerCase());
     }
 
     private Collection<Instruction> searchInstructions(String query) {
-        return InstructionList.INSTRUCTION_LIST
+        return InstructionList.getInstructions()
                .stream()
                .filter(instruction -> matches(instruction, query))
                .collect(Collectors.toCollection(TreeSet::new));

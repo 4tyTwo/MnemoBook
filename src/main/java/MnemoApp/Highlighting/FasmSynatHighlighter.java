@@ -1,9 +1,8 @@
-package MnemoApp.Utils;
+package MnemoApp.Highlighting;
 
 import MnemoApp.Entities.Instruction;
 import MnemoApp.Entities.InstructionList;
 import javafx.concurrent.Task;
-import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
 
@@ -16,8 +15,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class SyntaxHighlighter {
-    private static final List<String> INSTRUCTIONS = InstructionList.INSTRUCTION_LIST
+public class FasmSynatHighlighter implements SyntaxHighlighter {
+    private static final List<String> INSTRUCTIONS = InstructionList.X86_INSTRUCTIONS
             .stream()
             .map(Instruction::getName)
             .map(String::toLowerCase)
@@ -25,7 +24,7 @@ public class SyntaxHighlighter {
 
     private static final String INSTRUCTIONS_PATTERN = "\\b(" + String.join("|", INSTRUCTIONS) + ")\\b";
     private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
-    private static final String COMMENT_PATTERN = "#(.*)";
+    private static final String COMMENT_PATTERN = ";(.*)";
 
     private static final Pattern PATTERN = Pattern.compile(
             "(?<INSTRUCTION>" + INSTRUCTIONS_PATTERN + ")"
@@ -33,31 +32,21 @@ public class SyntaxHighlighter {
                     + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
     );
 
-    private final ExecutorService executor = Executors.newSingleThreadExecutor();;
-    private final CodeArea codeArea;
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
-    public SyntaxHighlighter(CodeArea codeArea) {
-        this.codeArea = codeArea;
-    }
-
-    public Task<StyleSpans<Collection<String>>> computeHighlightingAsync() {
-
-        String text = codeArea.getText();
+    @Override
+    public Task<StyleSpans<Collection<String>>> computeHighlighting(String text) {
         Task<StyleSpans<Collection<String>>> task = new Task<>() {
             @Override
             protected StyleSpans<Collection<String>> call() {
-                return computeHighlighting(text);
+                return doComputeHighlighting(text);
             }
         };
         executor.execute(task);
         return task;
     }
 
-    public void applyHighlighting(StyleSpans<Collection<String>> highlighting) {
-        codeArea.setStyleSpans(0, highlighting);
-    }
-
-    private static StyleSpans<Collection<String>> computeHighlighting(String text) {
+    private StyleSpans<Collection<String>> doComputeHighlighting(String text) {
         Matcher matcher = PATTERN.matcher(text);
         int lastKwEnd = 0;
         StyleSpansBuilder<Collection<String>> spansBuilder
@@ -66,8 +55,8 @@ public class SyntaxHighlighter {
             String styleClass =
                     matcher.group("INSTRUCTION") != null ? "instruction" :
                             matcher.group("STRING") != null ? "string" :
-                                matcher.group("COMMENT") != null ? "comment" :
-                                        null;
+                                    matcher.group("COMMENT") != null ? "comment" :
+                                            null;
             assert styleClass != null;
             spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
             spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
@@ -76,5 +65,4 @@ public class SyntaxHighlighter {
         spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
         return spansBuilder.create();
     }
-
 }

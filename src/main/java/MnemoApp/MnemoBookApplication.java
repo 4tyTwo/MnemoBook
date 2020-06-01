@@ -2,18 +2,22 @@ package MnemoApp;
 
 import MnemoApp.elements.EditorPane;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import MnemoApp.Controllers.MainSceneController;
+import javafx.stage.WindowEvent;
 
 
 import java.io.IOException;
 import java.net.URL;
 
 public class MnemoBookApplication extends Application {
-
     @Override
     public void start(Stage stage) {
         FXMLLoader loader = new FXMLLoader();
@@ -35,6 +39,10 @@ public class MnemoBookApplication extends Application {
         catch (IOException e) {
             throw new RuntimeException(e);
         }
+        stage.setOnCloseRequest(t -> {
+            Platform.exit();
+            System.exit(0);
+        });
         stage.show();
     }
 

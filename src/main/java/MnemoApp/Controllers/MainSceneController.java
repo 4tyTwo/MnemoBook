@@ -1,8 +1,11 @@
 package MnemoApp.Controllers;
 
+import MnemoApp.ApplicationConfig;
 import MnemoApp.elements.EditorPane;
 import MnemoApp.elements.HelpWindow;
 import MnemoApp.elements.MnemonicDescription;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -10,9 +13,14 @@ import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
+import org.fxmisc.richtext.model.PlainTextChange;
+import org.fxmisc.richtext.model.StyleSpansBuilder;
+import org.fxmisc.richtext.model.TextChange;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.Collection;
+import java.util.Collections;
 
 public class MainSceneController {
 
@@ -104,5 +112,23 @@ public class MainSceneController {
         root.getChildren().add(window);
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    public void mipsAssemblyChosen(ActionEvent actionEvent) {
+        ApplicationConfig.PREFERENCES.put("assembler", "MIPS");
+        clearStyleSpans();
+    }
+
+    public void fasmAssemblyChosen(ActionEvent actionEvent) {
+        ApplicationConfig.PREFERENCES.put("assembler", "fasm");
+        clearStyleSpans();
+    }
+
+    private void clearStyleSpans() {
+        codeEditor.setStyleSpans(0,
+                new StyleSpansBuilder<Collection<String>>()
+                        .add(Collections.emptyList(), codeEditor.getText().length())
+                        .create()
+        );
     }
 }

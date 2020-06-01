@@ -6,6 +6,7 @@ module MnemoApp {
     requires reactfx;
     requires com.fasterxml.jackson.databind;
     requires fontawesomefx;
+    requires java.prefs;
 
     opens MnemoApp to java.base;
     exports MnemoApp;

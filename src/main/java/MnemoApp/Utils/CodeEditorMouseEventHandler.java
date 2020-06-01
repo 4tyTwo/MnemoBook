@@ -37,7 +37,7 @@ public class CodeEditorMouseEventHandler implements EventHandler<MouseOverTextEv
 
     private void maybeCreatePopup(MouseOverTextEvent event) {
         String text = getWordByCharacterPosition(event.getCharacterIndex());
-        Optional<Instruction> matchedInstruction = InstructionList.INSTRUCTION_LIST
+        Optional<Instruction> matchedInstruction = InstructionList.getInstructions()
                 .stream()
                 .filter(instruction -> instruction.getName().toLowerCase().equals(text))
                 .findFirst();
@@ -62,12 +62,15 @@ public class CodeEditorMouseEventHandler implements EventHandler<MouseOverTextEv
             }
         }
         int end = chId;
-        for (; end >= 0; ++end) {
+        for (; end < codeEditor.getText().length() ; ++end) {
             tmp = codeEditor.getText(end, end + 1);
             if (tmp.equals("\n")|| tmp.equals(" ") || tmp.equals("\t") || tmp.equals(",")) {
                 break;
             }
         }
-        return codeEditor.getText(begin+1, end);
+        System.out.println("Length of doc: " + codeEditor.getText().length() + " selecting from " + (begin + 1) + " to " + end);
+        if (begin+1 <= end)
+            return codeEditor.getText(begin+1, end);
+        return "";
     }
 }
