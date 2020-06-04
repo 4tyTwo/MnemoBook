@@ -12,8 +12,9 @@ public class Instruction implements Comparable<Instruction> {
             @JsonProperty("description") String description,
             @JsonProperty("operation") String operation,
             @JsonProperty("example")String example,
-            @JsonProperty("arguments") List<Argument> arguments,
-            @JsonProperty("full_name") String fullName
+            @JsonProperty("arguments") List<String> arguments,
+            @JsonProperty("full_name") String fullName,
+            @JsonProperty("machine_codes") List<String> machineCodes
     ) {
         this.name = name;
         this.fullName = fullName;
@@ -21,11 +22,18 @@ public class Instruction implements Comparable<Instruction> {
         this.operation = operation;
         this.example = example;
         this.arguments = arguments;
+        this.machineCodes = machineCodes;
     }
 
     private final String name;
 
     private final String fullName;
+
+    public List<String> getMachineCodes() {
+        return machineCodes;
+    }
+
+    private final List<String> machineCodes;
 
     public String getName() {
         return name;
@@ -47,7 +55,7 @@ public class Instruction implements Comparable<Instruction> {
         return example;
     }
 
-    public List<Argument> getArguments() {
+    public List<String> getArguments() {
         return arguments;
     }
 
@@ -57,7 +65,7 @@ public class Instruction implements Comparable<Instruction> {
 
     private final String example;
 
-    private final List<Argument> arguments;
+    private final List<String> arguments;
 
     @Override
     public int compareTo(Instruction other) {
