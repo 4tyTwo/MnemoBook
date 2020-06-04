@@ -6,20 +6,10 @@
       "description": "Adds two registers and stores the result in a register",
       "operation": "$d = $s + $t; advance_pc (4)",
       "arguments": [
-        {
-          "name": "destination",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "target",
-          "type": "register"
-        }
+        "reg, reg, reg"
       ],
-      "example": "add $d, $s, $t"
+      "example": "add $d, $s, $t",
+      "machine_codes": ["0000 00ss ssst tttt dddd d000 0010 0000"]
     },
     {
       "name": "ADDI",
@@ -27,18 +17,7 @@
       "description": "Adds a register and a sign-extended immediate value and stores the result in a register",
       "operation": "$t = $s + imm; advance_pc (4);",
       "arguments": [
-        {
-          "name": "target",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "immediate",
-          "type": "immediate"
-        }
+        "rerg, reg, imm"
       ],
       "example": "addi $t, $s, imm"
     },
@@ -48,18 +27,7 @@
       "description": "Adds a register and a sign-extended immediate value and stores the result in a register",
       "operation": "$t = $s + imm; advance_pc (4);",
       "arguments": [
-        {
-          "name": "target",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "immediate",
-          "type": "immediate"
-        }
+        "reg, reg, imm"
       ],
       "example": "addi $t, $s, imm"
     },
@@ -69,18 +37,7 @@
       "description": "Adds two registers and stores the result in a register",
       "operation": "$d = $s + $t; advance_pc (4);",
       "arguments": [
-        {
-          "name": "destination",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "target",
-          "type": "register"
-        }
+        "reg, reg, reg"
       ],
       "example": "addu $d, $s, $t"
     },
@@ -90,18 +47,7 @@
       "description": "Bitwise ands two registers and stores the result in a register",
       "operation": "$d = $s & $t; advance_pc (4);",
       "arguments": [
-        {
-          "name": "destination",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "target",
-          "type": "register"
-        }
+        "reg, reg, reg"
       ],
       "example": "and $d, $s, $t"
     },
@@ -111,18 +57,7 @@
       "description": "Bitwise ands a register and an immediate value and stores the result in a register",
       "operation": "$t = $s & imm; advance_pc (4);",
       "arguments": [
-        {
-          "name": "target",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "immediate",
-          "type": "immediate"
-        }
+        "reg, reg, imm"
       ],
       "example": "andi $t, $s, imm"
     },
@@ -132,18 +67,7 @@
       "description": "Branches if the two registers are equal",
       "operation": "if $s == $t advance_pc (offset << 2)); else advance_pc (4);;",
       "arguments": [
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "target",
-          "type": "register"
-        },
-        {
-          "name": "offset",
-          "type": "offset"
-        }
+        "reg, reg, offset"
       ],
       "example": "beq $s, $t, offset"
     },
@@ -153,14 +77,7 @@
       "description": "Branches if the register is greater than or equal to zero and saves the return address in $31",
       "operation": "if $s >= 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);",
       "arguments": [
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "offset",
-          "type": "offset"
-        }
+        "reg, offset"
       ],
       "example": "bgezal $s, offset"
     },
@@ -170,14 +87,7 @@
       "description": "Branches if the register is greater than zero",
       "operation": "if $s > 0 advance_pc (offset << 2)); else advance_pc (4);",
       "arguments": [
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "offset",
-          "type": "offset"
-        }
+        "reg, offset"
       ],
       "example": "bgtz $s, offset"
     },
@@ -187,14 +97,7 @@
       "description": "Branches if the register is less than or equal to zero",
       "operation": "if $s <= 0 advance_pc (offset << 2)); else advance_pc (4);",
       "arguments": [
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "offset",
-          "type": "offset"
-        }
+        "reg, offset"
       ],
       "example": "blez $s, offset"
     },
@@ -204,14 +107,7 @@
       "description": "Branches if the register is less than zero",
       "operation": "if $s < 0 advance_pc (offset << 2)); else advance_pc (4);",
       "arguments": [
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "offset",
-          "type": "offset"
-        }
+        "reg, offset"
       ],
       "example": "bltz $s, offset"
     },
@@ -221,14 +117,7 @@
       "description": "Branches if the register is less than zero and saves the return address in $31",
       "operation": "if $s < 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);",
       "arguments": [
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "offset",
-          "type": "offset"
-        }
+        "reg, offset"
       ],
       "example": "bltzal $s, offset"
     },
@@ -238,18 +127,7 @@
       "description": "Branches if the two registers are not equal",
       "operation": "if $s != $t advance_pc (offset << 2)); else advance_pc (4);",
       "arguments": [
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "target",
-          "type": "register"
-        },
-        {
-          "name": "offset",
-          "type": "offset"
-        }
+        "reg, reg, offset"
       ],
       "example": "bne $s, $t, offset"
     },
@@ -258,16 +136,7 @@
       "full_name": "Divide",
       "description": "Divides $s by $t and stores the quotient in $LO and the remainder in $HI",
       "operation": "$LO = $s / $t; $HI = $s % $t; advance_pc (4);",
-      "arguments": [
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "target",
-          "type": "register"
-        }
-      ],
+      "arguments": ["reg, reg"],
       "example": "div $s, $t"
     },
     {
@@ -276,14 +145,7 @@
       "description": "Divides $s by $t and stores the quotient in $LO and the remainder in $HI",
       "operation": "$LO = $s / $t; $HI = $s % $t; advance_pc (4);",
       "arguments": [
-        {
-          "name": "source",
-          "type": "register"
-        },
-        {
-          "name": "target",
-          "type": "register"
-        }
+        "reg, reg"
       ],
       "example": "divu $s, $t"
     },
@@ -292,12 +154,7 @@
       "full_name": "Jump",
       "description": "Jumps to the calculated address",
       "operation": "PC = nPC; nPC = (PC & 0xf0000000) | (target << 2);",
-      "arguments": [
-        {
-          "name": "target",
-          "type": "target"
-        }
-      ],
+      "arguments": ["offset"],
       "example": "j target"
     },
     {
@@ -305,12 +162,7 @@
       "full_name": "Jump and link",
       "description": "Jumps to the calculated address and stores the return address in $31",
       "operation": "$31 = PC + 8 (or nPC + 4); PC = nPC; nPC = (PC & 0xf0000000) | (target << 2);",
-      "arguments": [
-        {
-          "name": "target",
-          "type": "target"
-        }
-      ],
+      "arguments": ["offset"],
       "example": "jal target"
     },
     {
@@ -319,10 +171,7 @@
       "description": "Jump to the address contained in register $s",
       "operation": "PC = nPC; nPC = $s;",
       "arguments": [
-        {
-          "name": "target",
-          "type": "register"
-        }
+        "reg"
       ],
       "example": "jal $s"
     },
@@ -331,16 +180,7 @@
       "full_name": "Load byte",
       "description": "A byte is loaded into a register from the specified address.",
       "operation": "$t = MEM[$s + offset]; advance_pc (4);",
-      "arguments": [
-        {
-          "name": "target",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "offset"
-        }
-      ],
+      "arguments": ["reg, offset"],
       "example": "lb $t, offset($s)"
     },
     {
@@ -348,16 +188,7 @@
       "full_name": "Load immediate",
       "description": "The immediate value stored in the register",
       "operation": "$t = imm; advance_pc (4);",
-      "arguments": [
-        {
-          "name": "target",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "immediate"
-        }
-      ],
+      "arguments": ["reg, imm"],
       "example": "lui $t, imm"
     },
     {
@@ -365,16 +196,7 @@
       "full_name": "Load upper immediate",
       "description": "The immediate value is shifted left 16 bits and stored in the register. The lower 16 bits are zeroes",
       "operation": "$t = (imm << 16); advance_pc (4);",
-      "arguments": [
-        {
-          "name": "target",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "immediate"
-        }
-      ],
+      "arguments": ["reg, imm"],
       "example": "lui $t, imm"
     },
     {
@@ -382,16 +204,7 @@
       "full_name": "Load word",
       "description": "A word is loaded into a register from the specified address.",
       "operation": "$t = MEM[$s + offset]; advance_pc (4);",
-      "arguments": [
-        {
-          "name": "target",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "offset"
-        }
-      ],
+      "arguments": ["reg, offset"],
       "example": "lw $t, offset($s)"
     },
     {
@@ -400,14 +213,7 @@
       "description": "An address is loaded into a register",
       "operation": "$t = offset; advance_pc (4);",
       "arguments": [
-        {
-          "name": "target",
-          "type": "register"
-        },
-        {
-          "name": "source",
-          "type": "address"
-        }
+        "reg, mem"
       ],
       "example": "la $t, s"
     },
