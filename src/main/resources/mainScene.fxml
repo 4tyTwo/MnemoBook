@@ -8,11 +8,11 @@
     <top>
         <MenuBar useSystemMenuBar="true">
             <Menu text="File">
-                <MenuItem text="New"/> <!-- TODO: implement -->
+                <MenuItem onAction="#newFileButtonClicked" text="New"/> <!-- TODO: implement -->
                 <MenuItem onAction="#fileOpenButtonClicked" text="Open" />
                 <MenuItem onAction="#saveFileButtonClicked" text="Save"/>
                 <MenuItem onAction="#saveFileAsButtonClicked" text="Save as" />
-                <MenuItem text="Exit"/><!-- TODO: implement -->
+                <MenuItem onAction="#exitButtonClicked" text="Exit"/><!-- TODO: implement -->
             </Menu>
             <Menu text="Info">
                 <MenuItem onAction="#mnemonicsButtonClicked" text="Mnemonics"/>

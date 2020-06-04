@@ -29,6 +29,7 @@ public class MainSceneController {
     private Label currentFileName;
 
     private File currentFile;
+    private boolean fileChanged = false;
 
     public MainSceneController setCodeEditor(CodeArea codeEditor) {
         this.codeEditor = codeEditor;
@@ -130,5 +131,12 @@ public class MainSceneController {
                         .add(Collections.emptyList(), codeEditor.getText().length())
                         .create()
         );
+    }
+
+    public void exitButtonClicked(ActionEvent actionEvent) {
+        this.stage.close();
+    }
+
+    public void newFileButtonClicked(ActionEvent actionEvent) {
     }
 }

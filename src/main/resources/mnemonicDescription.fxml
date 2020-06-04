@@ -9,6 +9,7 @@
 <fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
          fx:controller="MnemoApp.Controllers.MnemonicDescriptionController"
+         fx:id="descriptionRoot"
          prefWidth="300"
          style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;"
 >
@@ -85,4 +86,20 @@
             <Insets bottom="5.0" left="7.0" top="7" />
         </VBox.margin>
     </Text>
+    <VBox>
+        <Label text="Machine codes">
+            <font>
+                <Font size="20.0" />
+            </font>
+            <VBox.margin>
+                <Insets bottom="5.0" left="7.0" top="7" />
+            </VBox.margin>
+        </Label>
+        <ListView prefHeight="100"  prefWidth="250" fx:id="machineCodes">
+            <VBox.margin>
+                <Insets bottom="5.0" left="7.0" top="7" />
+            </VBox.margin>
+            <!-- Arguments here -->
+        </ListView>
+    </VBox>
 </fx:root>

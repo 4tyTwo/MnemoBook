@@ -1,9 +1,9 @@
 package MnemoApp.Controllers;
 
-import MnemoApp.Entities.Argument;
 import MnemoApp.Entities.Instruction;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.util.List;
@@ -16,6 +16,8 @@ public class MnemonicDescriptionController {
     public Text example;
     public Text operation;
     public Label fullName;
+    public ListView<Text> machineCodes;
+    public VBox descriptionRoot;
 
     public void setUpChildren(Instruction instruction) {
         name.setText(instruction.getName());
@@ -23,9 +25,17 @@ public class MnemonicDescriptionController {
         example.setText(instruction.getExample());
         operation.setText(instruction.getOperation());
         fullName.setText(instruction.getFullName());
-        List<Text> Arguments = instruction.getArguments().stream().map(Argument::toString).map(Text::new)
+        List<Text> Arguments = instruction.getArguments().stream().map(Text::new)
                 .collect(Collectors.toList());
         arguments.getItems().addAll(Arguments);
         arguments.setMaxHeight(26 * Arguments.size());
+        if (instruction.getMachineCodes() != null) {
+            List<Text> codes = instruction.getMachineCodes().stream().map(Text::new)
+                    .collect(Collectors.toList());
+            machineCodes.getItems().addAll(codes);
+            machineCodes.setMaxHeight(26 * codes.size());
+        } else {
+            descriptionRoot.getChildren().remove(machineCodes.getParent());
+        }
     }
 }
