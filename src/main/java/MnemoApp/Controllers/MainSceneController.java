@@ -5,17 +5,15 @@ import MnemoApp.elements.EditorPane;
 import MnemoApp.elements.HelpWindow;
 import MnemoApp.elements.MnemonicDescription;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
-import org.fxmisc.richtext.model.PlainTextChange;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
-import org.fxmisc.richtext.model.TextChange;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -29,11 +27,30 @@ public class MainSceneController {
     private Label currentFileName;
 
     private File currentFile;
-    private boolean fileChanged = false;
+    private String lastSavedText = "";
 
     public MainSceneController setCodeEditor(CodeArea codeEditor) {
         this.codeEditor = codeEditor;
+        codeEditor.addEventHandler(KeyEvent.KEY_PRESSED, KE -> {
+            String currentText = codeEditor.getText();
+            boolean isSaved = currentText.equals(lastSavedText);
+            setFileSavedIndicator(isSaved);
+        });
         return this;
+    }
+
+    private void setFileSavedIndicator(boolean isSaved) {
+        String filename = currentFileName.getText();
+        String newfilename = filename;
+        boolean currentIndicator = !filename.startsWith("* ");
+        if (currentIndicator != isSaved) {
+            if (isSaved) {
+                newfilename = filename.substring(2);
+            } else {
+                newfilename = "* " + filename;
+            }
+        }
+        currentFileName.setText(newfilename);
     }
 
     public MainSceneController setCurrentFileName(Label currentFileName) {
@@ -62,6 +79,7 @@ public class MainSceneController {
                 codeEditor.replaceText(contents);
                 currentFile = file;
                 currentFileName.setText(file.getName());
+                lastSavedText = codeEditor.getText();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -72,7 +90,9 @@ public class MainSceneController {
         if (currentFile == null) {
             saveFileAsButtonClicked();
         } else {
-            saveTextToFile(codeEditor.getText(), currentFile);
+            String content = codeEditor.getText();
+            saveTextToFile(content, currentFile);
+            lastSavedText = content;
         }
     }
 
@@ -81,8 +101,9 @@ public class MainSceneController {
         chooser.setTitle("Open Resource File");
         File file = chooser.showSaveDialog(stage);
         if (file != null) {
-            String text = codeEditor.getText();
-            saveTextToFile(text, file);
+            String content = codeEditor.getText();
+            saveTextToFile(content, file);
+            lastSavedText = content;
         }
     }
 

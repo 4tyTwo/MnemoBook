@@ -68,7 +68,6 @@ public class CodeEditorMouseEventHandler implements EventHandler<MouseOverTextEv
                 break;
             }
         }
-        System.out.println("Length of doc: " + codeEditor.getText().length() + " selecting from " + (begin + 1) + " to " + end);
         if (begin+1 <= end)
             return codeEditor.getText(begin+1, end);
         return "";
