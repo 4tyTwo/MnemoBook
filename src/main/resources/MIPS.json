@@ -218,6 +218,16 @@
       "example": "la $t, s"
     },
     {
+      "name": "MOVE",
+      "full_name": "Move",
+      "description": "Move value from register to register",
+      "operation": "$t = $s; advance_pc(4)",
+      "arguments": [
+        "reg, reg"
+      ],
+      "example": "move $t, $s"
+    },
+    {
       "name": "SYSCALL",
       "full_name": "Generates a software interrupt",
       "description": "Call operating system to perform action from $a0 with operand $v0",
